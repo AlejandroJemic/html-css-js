@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>curso CSS</title>
+    <title>practica CSS</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" type='text/css' href="normalize.css">
@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/62ea397d3a.js"></script>
 </head>
 <body>
-    <h1>Curso de CSS</h1>
+    <h1>practica de CSS</h1>
     <h2>subtitulo1</h2>
     <p class="parrafo">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eum ea odit, deserunt aliquid voluptate ipsum tenetur commodi veniam, possimus necessitatibus in distinctio harum quasi similique a. Rerum, dolore nesciunt.
@@ -237,27 +237,117 @@ object-postion . con cover acomoda la pos del img
 </div>
 
 <h2>MENU RESPONSIVO basico con css</h2>
-<body>
-    <header >
-        <nav class="nav">
-            <ul class="nav__ul">
-                <li class="nav__li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
-                <li class="nav__li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
-                <li class="nav__li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
-                <li class="nav__li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
-            </ul>
-            <ul class="nav__responsive-ul">
-                <div class="nav__responsive-button fas fa-bars"></div>
-                <div class="nav__li-container">
-                    <li class="nav__responsive-li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
-                    <li class="nav__responsive-li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
-                    <li class="nav__responsive-li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
-                    <li class="nav__responsive-li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
-                </div>
-            </ul>
-        </nav>
-    </header>
-</body>
+
+<header >
+    <nav class="nav">
+        <ul class="nav__ul">
+            <li class="nav__li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
+            <li class="nav__li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
+            <li class="nav__li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
+            <li class="nav__li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
+        </ul>
+        <ul class="nav__responsive-ul">
+            <div class="nav__responsive-button fas fa-bars"></div>
+            <div class="nav__li-container">
+                <li class="nav__responsive-li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
+                <li class="nav__responsive-li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
+                <li class="nav__responsive-li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
+                <li class="nav__responsive-li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+
 <h2>flexbox</h2>
 
+<div class="flex-container">
+<div class="flex-item"> 
+    <p>div 1</p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam placeat animi obcaecati provident, vitae cupiditate totam ab iusto fuga nostrum </div>
+<div class="flex-item">
+    <p>div 2</p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo facilis fuga eum tempora quam. Obcaecati aliquam itaque blanditiis necessitatibus distinctio ex, voluptatibus recusandae, quam beatae consequatur, inventore ipsum perferendis non! distinctio possimus, sint optio sapiente consequuntur, corrupti tempore repellat necessitatibus!</div>
+</div>
+</div>
+
+<div class="flex-container2">
+
+    <div class="flex-item2">
+        <p>div 2</p>
+    </div>
+    
+    <div class="flex-item2">
+        <p>div 2</p>
+    </div>
+    
+    <div class="flex-item2">
+        <p>div 2</p>
+    </div>
+    
+    <div class="flex-item2">
+        <p>div 2</p>
+    </div>
+</div>
+
+<h2>flexbox item properties</h2>
+
+<div class="flex-contprops">
+    <div class="grow flex-item-first">item props in flex 1, order 2</div>
+    <div class="grow flex-item-second">item props in flex 2, order 3</div>
+    <div class="grow flex-item-last">item props in flex 3</div>
+</div>
+
+
+<h2>GRID</h2>
+<div class="grid-cont">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+    <div class="grid-item">7</div>
+    <div class="grid-item">8</div>
+    <div class="grid-item">9</div>
+    <div class="grid-item">10</div>
+</div>
+<h2>GRID EXPLISITO E IMPLICITO</h2>
+<div class="grid-implicit-cont">
+    <div class="grid-imp-item">1</div>
+    <div class="grid-imp-item">2</div>
+    <div class="grid-imp-item">3</div>
+    <div class="grid-imp-item">4</div>
+    <div class="grid-imp-item">5</div>
+    <div class="grid-imp-item">6</div>
+    <div class="grid-imp-item">7 es un auto row OR column</div>
+
+</div>
+
+<h2>GRID dinamico</h2>
+<div class="grid-dim-cont">
+    <div class="grid-dim-item">1</div>
+    <div class="grid-dim-item">2</div>
+    <div class="grid-dim-item">3</div>
+    <div class="grid-dim-item">4</div>
+    <div class="grid-dim-item">5</div>
+    <div class="grid-dim-item">6</div>
+    <div class="grid-dim-item">7</div>
+</div>
+
+<h2>GRID alineaciones</h2>
+<div class="grid-align-cont">
+    <div class="grid-align-item">1</div>
+    <div class="grid-align-item">2</div>
+    <div class="grid-align-item">3</div>
+    <div class="grid-align-item">4</div>
+    <div class="grid-align-item">5</div>
+    <div class="grid-align-item">6</div>
+</div>
+<h2>GRID AREAS</h2>
+<div class="grid-area-cont">
+    <div class="grid-area-item grid-header">header</div>
+    <div class="grid-area-item grid-main">main</div>
+    <div class="grid-area-item grid-aside">aside</div>
+    <div class="grid-area-item grid-footer">footer</div>
+</div>
 </html>

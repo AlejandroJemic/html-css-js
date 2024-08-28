@@ -662,3 +662,399 @@ agregar el cdn de iconos font awersome
     z-index: -10;
 }
 
+/* fexlbox cajas flexibles
+    tiene un container y uno o varios items (los hijos directos, no los sub contenidos
+    tiene dos ejes el main axis , x generalmente
+    main-start main-end (iz a der)
+
+    y el cross axis (vertical) (arriba a abajo)
+    cross-start cross-end
+*/
+.flex-container{
+    display: flex; /* los items se adaptan al conenedor pero tambien se ajustan al contenido*/
+    flex-direction: row; /*es el valor por defecto, main axis horizontal*/
+    /*flex-direction: row-reverse; /*cambia start por end*/
+    /*flex-direction: column; /*cambia la direccion del main axis*/
+    /*flex-direction: column-reverse; /*cambia start por end*/
+    flex-wrap: wrap; /*respeta el tamaños de los items y los apila debajo si es necesario*/
+    /*flex-wrap: wrap-reverse; /*coloca el overflow por encima*/
+
+    justify-content: center; /*centra los items en el main axis*/
+    justify-content: space-between; /* distribuye el espacio entre los items usando el 100% del main axis*/
+    justify-content: space-evenly; /*todos los espacion son iguales*/
+    justify-content: space-around; /*es mas responsivo, distribuye los items en el main axis en espacios iguales*/
+}
+.flex-item{
+    border: solid 1px black;
+    background-color: rgb(0, 90, 139);
+    color: white;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+/*
+para alinear en el cross axis se usan 2 props
+aling items (cuando es 1 linea) flex-start flex-end center stretch baseline
+align content (mas de 1 linea) 
+*/
+
+.flex-container2{
+    border: solid 1px black;
+    height: 200px;
+    display: flex; /* los items se adaptan al conenedor pero tambien se ajustan al contenido*/
+    flex-direction: row; /*es el valor por defecto, main axis horizontal*/
+    flex-wrap: wrap; /*respeta el tamaños de los items y los apila debajo si es necesario*/
+    justify-content: space-evenly; /*es mas responsivo, distribuye los items en el main axis en espacios iguales*/
+    align-content: center; /*flex-start flex-end*/
+    /*align-items: center; /*flex-start flex-end*/
+
+    /*si quiero uvicar los items al final del cros axis
+        flex-wrap: wrap-reverse;
+        align-content:baselane;
+    */
+}
+.flex-item2{
+    border: solid 1px black;
+    background-color: rgb(42, 0, 139);
+    color: white;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+}
+.flex-item2 p{color:white;}
+
+
+/* flexbox items props
+    aling-self. en el cross axis
+
+    margin
+    en flex el margin del item funciona completamante invertido
+    left se hace rigth | top se hace bottom
+
+    flex-grow.
+    agarra el espacio sobrante y lo reparte en las cajas que quedan
+    lo hace mas responsivo
+
+    flex-basis.
+    define el ancho de la caja
+    tiene presedencia sobre
+    width  y felex-grow
+
+    flex-shrink.
+    es la proporcion del espacio que sede la caja si se requiere
+
+    flex.
+    es un shorthand de flex-grow flex-shrink flex-basis
+
+    order.
+    indica el orden de las cajas
+    afecta la flex-direccion en el main axis
+*/
+
+.flex-contprops{
+    display: flex;
+    justify-content: space-evenly;
+    border: solid 1px black;
+    height: 200px;
+    flex-wrap: wrap;
+}
+
+.flex-item-first{
+    align-self: flex-start; /* es el valor default*/
+    order: 2; /*lo ubica al medio*/
+}
+
+.flex-item-second{
+    /*por flex inverte entra en conflicto y queda centrado*/
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto; /*es lo mismo*/
+    flex-shrink: 2;
+    order : 3;
+}
+
+.flex-item-last{
+    flex-basis: 200px;
+    align-self: flex-end; /*lo ubica en el fondo*/ /*flex-start flex-end  stretch */
+}
+.grow{
+    flex-grow: 1; /*el espacio sobrante se reparte en 1 y se distrivuye*/
+    border: solid 1px black;
+    min-width: 150px; /* con  flex-wrap: wrap; si el tamaño se hace mas pequeño lo manda abajo */
+}
+
+/* GRID 
+    TRABAJAMOS EL LAYOUT EN GRILLAS
+    grid container.
+        engloba y define toda la grilla
+    grid item.
+        todos los elementos dentro del conteiner son items. solo los ijos directos del container
+    grid cell.
+        el producto de las columnas con las filas
+        
+    grid tracks.
+        es la suma de la cnatidad de columnas y filas, no el producto
+        tambien hay grid-row, grid-column
+        grid area.
+        son conjuntos de celdas consecutivas que selecionamos
+        son user defined
+    grid lines (column-line, row-line)
+        son las lineas que delimitan las columnas y las filas, los bordes
+        empiezan con el indice 1, no cero
+
+    ----- propiedades ------
+    grid-template-rows (grid-container)
+    grid-template-columns (grid-container)
+    grid-template-areas
+    grid-template
+
+    grid-row-gap (grid-container)
+    grid-column-gap (grid-container)
+    grid-gap row column (grid-container)
+
+    grid-row-start (grid-item)
+    grid-row-end (grid-item)
+    grid-column-start (grid-item)
+    grid-column-end (grid-item)
+    grid-row (grid-item)
+    grid-column (grid-item)
+
+    unidades auto , fr
+    repeat(cantidad, tamaño/s)
+*/
+
+.grid-cont{
+    border: solid 2px black;
+    display: grid;
+    grid-template-columns: 100px 100px  1fr ;
+    /* grid-template-rows: 100px 100px 100px 100px; */
+    grid-template-rows: repeat(4, 100px); /*es lo mismo*/
+    grid-gap: 10px;
+}
+
+.grid-item{
+    border: solid 2px black;
+    background-color: rgb(42, 0, 139);
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.grid-item:first-child{
+    background-color: red;
+    /*uso grid lines (column-line, row-line) para definir los limites del item*/
+    /*grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;*/
+
+    /**shorthand*/
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+.grid-item:nth-child(2){
+    background-color: orange;
+    /*uso grid lines (column-line, row-line) para definir los limites del item*/
+    grid-column: 2/3;
+    grid-row: 2/ 3; /**span indica la extencion desde el inicio*/
+}
+
+/*
+GRID IMPLICITO Y EXPLISITO
+
+    IMPLICITO ES cuando los items se alieana a la grilla SIN que 
+    se les halla dado un formato
+    ej en una grilla de 2x3 un item 7 se colocoa en al fila 3 automaticamante
+    aun si no defini 4 filas
+    por defecto los items extra se crean como filas
+
+    3 nuevas porps del grid implicito
+    - grid-auto-rows (igual que el template)
+    - grid-auto-columns (igual que el template)
+    - grid-auto-flow  row(default). column y dense 
+    */
+
+.grid-implicit-cont{
+    border: solid 2px black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;/*de este modo defino 3 columnas fijas que se ajustan aal ancho, pero no eifito el overflow */
+    grid-template-rows: repeat(2, 60px);/*defino 2 filas iniciales de 100px */
+    grid-auto-rows: 60px; /* crea las filas extra automaticamante */
+    grid-auto-flow: row; /*or column, indica como se agregan los extra*/
+    /*grid-auto-flow: dense; /* evita que queden espacios vacios o huecos en la grillas*/
+    grid-gap: 10px;
+}
+
+.grid-imp-item{
+    border: solid 2px black;
+    background-color: rgb(42, 0, 139);
+    color: white;
+    margin: 0px;
+    padding: 10px;
+   
+}
+
+.grid-imp-item:last-child{
+    background-color: red;
+    /* grid-column: 1/4; */ /*width 100%*/
+}
+
+
+/*  GRID DINAMICO
+    trabajo con propiedades dinamicas
+
+    SI TENGO  min-width: 150px; EN EL ITEM
+    puedo usar
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    de este modo se crean tantas columnas y filas como se necesiten, para evitar el overflow y rspetar el min width
+
+    - minmax()
+        permite indicar cuanto va a medir el item de minimo y maximo
+
+    - min-content y max-content. 
+        en lugar de usar % fr o px, 
+        puedo usar repeat(3,min-content)
+        para respetar de algun modo el contenido del item(3 columnas en este ej)
+
+    - cantidad:
+        - auto-fit
+            en el repeat indica la cantidad de repeticiones para que se cumpla el minmax()
+            repeat(auto-fit, minmax(150px, 1fr));
+            crea columnas para respetar el tamaño
+        - auto-fill: idem pero rellena todo el espacio disponifle
+ */
+
+ .grid-dim-cont{
+    border: solid 2px black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 60px; /* crea las filas extra automaticamante */
+    grid-auto-flow: row; /*or column, indica como se agregan los extra*/
+    /*grid-auto-flow: dense; /* evita que queden espacios vacios o huecos en la grillas*/
+    grid-gap: 10px;
+}
+
+.grid-dim-item{
+    border: solid 2px black;
+    background-color: rgb(42, 0, 139);
+    color: white;
+    margin: 0px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+.grid-dim-item:last-child{
+    background-color: red;
+}
+
+/* ALINEACION Y CONTROL DE FLUJO
+    la alineacion es dentro de cada celda y no 
+    alienacion total del flex container
+    cada celda seria un flex container
+
+    propiedades del grid container:
+    - justify-items   horizontal
+    - align-items     vertical
+    - stretch(default) - start - center - end
+    - place-items: align-items justify-items
+    
+    alineacion de filas y columnas:
+    - justify-content     horizontal
+    - align-content       vertical
+        stretch(default) - start - center - end
+        ademas tiene las de flex: space-arround space-between space-evenly
+
+    propiedades del item
+    - justify-self  horihontal, sobreescribe el justify-items
+    - align-self    vertical, sobreescribe el align-items
+    - place-self:   justify-self align-self, shorthand
+    - order:        funciona igual que en flex, es una especie de z index, por defecto es 1
+*/
+
+.grid-align-cont{
+    border: solid 2px black;
+    display: grid;
+    grid-gap: 10px;
+    height: 150px;
+    grid-template-columns: repeat(3, 100px);
+    /*alineacion por columna y filas*/
+    justify-content: end; /* horizontal start- center - end */
+    align-content: end; /* vertical stretch(default)- start - center - end */
+    /*alinreacion por items*/
+    justify-items: center; /* start - end */
+    align-items: center; /* stretch(default)- start - center - end */
+}
+
+.grid-align-item{
+    border: solid 2px black;
+    background-color: rgb(42, 0, 139);
+    color: white;
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.grid-align-item:first-child{   
+    /*alineacion del item*/
+    align-self: flex-start; /* vertical*/
+    justify-self: start; /* horizontal*/
+    background-color: red;
+    order: 2; 
+}
+
+/* AREAS EN GRID
+    al grid ontainer:
+    - grid-template-areas: "nombre/s de area/s" 
+
+    al item:
+    - grid-template-areas:
+
+*/
+
+.grid-area-cont{
+    border: solid 2px black;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 
+        'header header header'
+        'aside main main'
+        'footer footer footer';
+    grid-template-rows: 60px 120px 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-area-item{
+    border: solid 2px black;
+    color: white;
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.grid-header { grid-area: header;   background-color: orange;}
+.grid-main   { grid-area: main;     background-color: rgb(0, 113, 139);}
+.grid-aside  { grid-area: aside;    background-color: rgb(42, 0, 139);}
+.grid-footer { grid-area: footer;   background-color: red;}
+
+
+/* grid nombres de lineas
+    es util cuando tengo grillas grandes o ccomplejas para 
+    identificar puntos de referencia (secciones etc)  ej:
+    en el container:
+        grid-template-rows: 
+        [inicio] 
+        100px
+        [medio]
+        150px
+        [final]
+        100px;
+    en el item:
+        grid-row: inicio/medio
+        grid-row: inicio/final
+*/
