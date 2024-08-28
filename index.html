@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>curso CSS</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" type='text/css' href="normalize.css">
+    <script src='main.js'></script>
+    <script src="https://kit.fontawesome.com/62ea397d3a.js"></script>
+</head>
+<body>
+    <h1>Curso de CSS</h1>
+    <h2>subtitulo1</h2>
+    <p class="parrafo">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eum ea odit, deserunt aliquid voluptate ipsum tenetur commodi veniam, possimus necessitatibus in distinctio harum quasi similique a. Rerum, dolore nesciunt.
+    </p>
+    <input type="text" valuse="valor del input" minombre="test">
+    <button id="boton">dale click</button>
+    <h2><b> presedencia </b></h2>
+    <p class="important"  style="color: darksalmon;">
+        important tiene la mayor precedencia
+    </p>
+
+    <p class="parrafo2" style="color: darksalmon;">
+        inline style tiene la segunda precedencia
+    </p>
+    <p class="parrafo2" id="parrafo3">
+       id es el tercero en precedencias
+    </p>
+    <p class="parrafo2">
+        clases es el cuarto en precedencias
+    </p>
+
+    <h2>METOLOGIA BEM</h2>
+    <div class="form">
+        <input type="text" class=" form__input form__input--active" placeholder="unser"> 
+        <input type="password" class="form__input" placeholder="pass">
+    </div>
+</body>
+<h2>UNIDADES DE MEDIDAS</h2>
+<h3>fijas: cm, mm, px, pt</h3>
+<div class="fijas">
+    <p class="p1">un centimetro</p>
+    <p class="p2">7 milimetros</p>
+    <p class="p3">14 pixels</p>
+</div>
+<h3>relativas contenedor 15px</h3>
+<div class="relativas">
+    <p class="relativas_p1"> 1em = 15px</p>
+    <p class="relativas_p2">2em = 30px</p>
+    <p class="relativas_p3">3em = 45px</p>
+</div>
+<div class="viewport">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ut cupiditate quae explicabo molestiae esse sed aperiam necessitatibus nam ducimus excepturi deserunt, fuga nemo! Aperiam dicta sunt alias nulla facilis.</p>
+</div>
+<h2>font</h2>
+<p class="font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse officiis non ad accusamus illum earum aut quos voluptatem dicta saepe omnis sequi quia qui magnam nam, harum facilis laborum reiciendis?</p>
+</html>
+
+<h2>imported font</h2>
+<p class="imported-moderustic-300">al principio del css @import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');</p>
+
+
+<h2>teoria de cajas</h2>
+<h4 class="cajas inline_forced"> h4 forzado inline</h4>
+<h4 class="cajas inline_forced"> h4 forzado inline</h4>
+<h4 class="cajas "> h4  normal (diplay block)</h4>
+
+<div class="estilos_cajas">
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet facilis unde voluptatibus fugit dolorem facere, vitae quod asperiores, ad cupiditate</p>
+</div>
+<div class="estilos_cajas">
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet facilis unde voluptatibus fugit dolorem facere, vitae quod asperiores, ad cupiditate</p>
+</div>
+
+<h2>OUTLINE</h2>
+<DIV class="caja2"></DIV>
+
+<h2>POSITION</h2>
+<div class="pos poscont">
+    relative se ajusta al ultimo elemento
+    <DIV class=" pos position1">absolute se ajusta al primer parent relative</DIV>
+</div>    
+    <DIV class=" pos position2">relative 2 </DIV>
+    <DIV class=" pos position3">relative 3</DIV>
+    <DIV class=" pos fixed">fixed se ajusata al viewport</DIV>
+    <div class="pos poscont">
+        <DIV class=" pos sticky">sticky se ajusata al contendor pero no sale del scroll top</DIV>
+    </div>
+
+
+<H2>SCROLL OVERFLOW</H2>
+<div class="overContainer">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt totam repellat hic quas. Autem quod dolor perferendis illo fuga rem exercitationem sit, nulla eligendi ab nesciunt reprehenderit? Fugit, harum nemo.
+</div>
+
+<h2>parrafos lado a lado</h2>
+<div class="sideCont">
+    <div class="sideContent P">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia alias dolorum adipisci neque ducimus odio hic fuga consequatur, numquam nostrum nulla reiciendis saepe in deserunt eius exercitationem aliquam eaque enim!</div>
+    <div class="sideContent S">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, molestias non ut harum nihil praesentium asperiores perferendis ad temporibus ratione eius laborum. Maxime culpa a beatae laudantium mollitia</div>
+</div>
+
+<h2>pseudo elementos</h2>
+
+<div class="texto imported-moderustic-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum nam ullam a temporibus libero dolor corporis repellat, architecto, expedita modi aliquid officia harum laborum similique facere quam beatae incidunt obcaecati!
+Aliquid accusamus exercitationem dicta porro atque minus corporis aspernatur omnis minima recusandae iste aut numquam, quibusdam repudiandae, voluptatum nisi, fugiat itaque magni. Ipsam, quas harum? Accusamus iure labore fugiat. Quae!
+Nulla impedit adipisci est temporibus fuga consequuntur sed modi, sit unde delectus ullam ducimus saepe nemo labore ipsa dicta laudantium ipsam facilis? Exercitationem ipsum, debitis et doloribus harum quod voluptatem.</div>
+
+
+<input type="text" class="input" placeholder="ingresar algo">
+
+<div class="after-before">
+    en el medio
+</div>
+
+<h2>PSEUDO CLASES</h2>
+<div class="pseudoclases">
+    <ul>
+        <li>hacer hover</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <a href="*" target="_blank">enlace</a>
+    
+    
+</div>
+<div class="pseudoclases" style="height: 50px; text-align: center; align-content: center;">
+    click me
+</div>
+
+<input type="text" class="pseudoinput" placeholder="focus me">
+
+<div class="pseudolang">
+    <p lang="es">texto en españpol es azul lang="es"</p>
+    <p lang="en">text in english is violet lang="en"</p>
+</div>
+
+<h2>object fil prop</h2>
+
+object-fit: contain   se estira para calsar
+<div class="img-cont">
+    <img src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+
+object-fit: cover   se estira en un eje y corta el otro 
+<div class="img-cont">
+    <img class="cover" src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+
+object-fit: none   conserva la resolucion pero overflow hiden
+<div class="img-cont">
+    <img  class="none" src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+object-fit: scale-down   se ajusta para calzar
+<div class="img-cont">
+    <img  class="scale-down" src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+object-fit: fill   se ajusta para calzar
+<div class="img-cont">
+    <img  class="fill" src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+
+object-postion . con cover acomoda la pos del img
+<div class="img-cont">
+    <img class="bottom" src="https://get.pxhere.com/photo/landscape-tree-nature-forest-branch-fog-mist-bench-sunlight-morning-leaf-dark-autumn-park-weather-season-in-the-morning-climate-deciduous-woodland-habitat-the-fog-magical-ecosystem-natural-environment-atmospheric-phenomenon-woody-plant-temperate-broadleaf-and-mixed-forest-temperate-coniferous-forest-386177.jpg" alt="">
+</div>
+
+<h2>cursores (hacer hover para ver los punteros)</h2>
+<a target="_blank" href="https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor" style="display: block;">cursores</a>
+<p class="alias">alias</p>
+<p class="all-scroll">all-scroll</p>
+<p class="auto">auto</p>
+<p class="cell">cell</p>
+<p class="col-resize">col-resize</p>
+<p class="context-menu">context-menu</p>
+<p class="copy">copy</p>
+<p class="crosshair">crosshair</p>
+<p class="default">default</p>
+<p class="e-resize">e-resize</p>
+<p class="ew-resize">ew-resize</p>
+<p class="grab">grab</p>
+<p class="grabbing">grabbing</p>
+<p class="help">help</p>
+<p class="move">move</p>
+<p class="n-resize">n-resize</p>
+<p class="ne-resize">ne-resize</p>
+<p class="nesw-resize">nesw-resize</p>
+<p class="ns-resize">ns-resize</p>
+<p class="nw-resize">nw-resize</p>
+<p class="nwse-resize">nwse-resize</p>
+<p class="no-drop">no-drop</p>
+<p class="none">none</p>
+<p class="not-allowed">not-allowed</p>
+<p class="pointer">pointer</p>
+<p class="progress">progress</p>
+<p class="row-resize">row-resize</p>
+<p class="s-resize">s-resize</p>
+<p class="se-resize">se-resize</p>
+<p class="sw-resize">sw-resize</p>
+<p class="text">text</p>
+<p class="url">url</p>
+<p class="w-resize">w-resize</p>
+<p class="wait">wait</p>
+<p class="zoom-in">zoom-in</p>
+<p class="zoom-out">zoom-out</p>
+
+<h2>COLORES</h2>
+<a target="_blank" href="https://htmlcolorcodes.com/es/" style="display: block;">html colors</a>
+<div class="div-color colname"></div>
+<div class="div-color col1rgb"></div>
+<div class="div-color col1rgbA"></div>
+<div class="div-color col1hsl"></div>
+<div class="div-color col1hsla"></div>
+<div class="div-color colhex"></div>
+
+
+<h2>RESPONSIVE DESING</h2>
+<div class="resp">
+    <div>
+
+        <h3>este header es responsivo</h3>
+        <p class="resp-p">este parrafo es responsivo corto</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptatibus vitae, pariatur facere eaque nemo quos dicta quidem nam non accusantium temporibus. Ipsa atque nobis corporis nam eos, rem repudiandae!</p>
+    </div>
+    <div>
+        <h3>otro heder responsivo</h3>
+        <p class="resp-p">aqui va la noticia</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis quibusdam quos alias, unde voluptatibus quaerat repellat repudiandae velit, aspernatur officia atque excepturi, consequuntur ullam doloribus saepe aliquam soluta necessitatibus quo!</p>
+    </div>
+</div>
+
+<h2>MENU RESPONSIVO basico con css</h2>
+<body>
+    <header >
+        <nav class="nav">
+            <ul class="nav__ul">
+                <li class="nav__li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
+                <li class="nav__li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
+                <li class="nav__li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
+                <li class="nav__li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
+            </ul>
+            <ul class="nav__responsive-ul">
+                <div class="nav__responsive-button fas fa-bars"></div>
+                <div class="nav__li-container">
+                    <li class="nav__responsive-li"><i class="fas fa-home"></i><a href="#">inicio</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-user-friends"></i><a href="#">sobre nosotros</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-dolar-sign"></i><a href="#">gana dinero</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-help"></i><a href="#">contacto</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+</body>
+<h2>flexbox</h2>
+
+</html>

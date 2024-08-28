@@ -1,0 +1,664 @@
+@import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');
+
+/*selectores
+https://www.w3schools.com/cssref/css_selectors.php
+*/
+/* selector universal,: todos los elementos */
+*{ 
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* selectore port tipo de tag */ 
+h1, h2 {
+ color: blue;
+} 
+/*selector por clase*/
+.parrafo {
+    color: orchid;
+}
+/*selector por id*/
+#boton {
+    border: solid 2px blue;
+    border-radius: 3px;
+}
+/*selector por atributo*/
+[minombre="test"] {
+    color: blueviolet;
+}
+/*selector por desendiente*/
+h2 b {
+    color: darkgreen;
+}
+/*selector porp seudoclases (eventos?)*/
+/* *:hover{
+    color: green;
+} */
+
+/*
+especificidad: presedencia:
+
+1 !important
+2 estilos en linea (style="")
+3 identificadores (#)
+4 clases (.), pseudo clases(:), atributos ([])
+5 elementos (tag name), pseudo elementos
+
+a igual presedencia se aplica el ultimo estilo definido (cascada!!!!)
+*/
+
+.important{
+    color:  red !important;
+}
+#parrafo3{ /* id tiene presedencia sobre clase*/
+    color: darkslateblue;
+}
+.parrafo2 {
+    color: darkred;
+}
+
+
+/*
+metodologia BEM (BOX - ELEMENT - MODIFIER)
+Evita lOS conflictos conociendo que se elije a partir del nombre
+*/
+.form {
+    border: solid 1px gray; border-radius: 4px;
+    padding: 5px;
+}
+.form__input {/*uso __ para indicar el elemento*/
+    color: darkgray;
+    margin: 5px;
+}
+.form__input--active {/*uso -- para indicar el modificador , lo puedo manejar por js*/
+   font-weight: 600;
+}
+
+/*unidades de medida
+fijas cm mm px pt
+relativas 
+    rem Relative to the Root Element (<html>) Font Size:
+    em: por defecto 1 em = 16px, Relative to the Font Size of the Parent Element:
+    vw: view port witdh: ancho de la pantalla
+    vh: viewport height: alto de la pantalla
+    %: es el porcentaje del contenedor
+*/
+
+.fijas{
+    .p1 {font-size: 1cm}
+    .p2 {font-size: 7mm;}
+    .p3 {font-size: 14px;}
+}
+
+.relativas {
+    font-size: 15px;
+    margin: 5px !important;
+    padding: 5px !important;
+}
+.relativas_p1 {font-size: 1em;}
+.relativas_p2 {font-size: 2em;}
+.relativas_p3 {font-size: 3em;}
+
+.viewport{
+    border: solid 1px darkgray;
+    height: 20vh;
+    width: 50vw;
+}
+
+viewport p {
+    white-space: nowrap;        /* Prevents the text from wrapping to the next line */
+     overflow: hidden;           /* Ensures the overflowed text is clipped */
+     text-overflow: ellipsis;    /* Adds an ellipsis (...) at the point where the text is cut off */
+     max-width: 100%;            /* Set a maximum width or specific width to control where the text gets clipped */
+   }
+
+.font{
+    color: black;
+    font-size: 1rem;
+    font-family: sans-serif;
+    line-height: 1.4;
+    font-weight: 300;
+    font-stretch: expanded;
+    font-variant: small-caps;
+}
+
+
+.imported-moderustic-300 {
+  font-family: "Moderustic", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/*
+normalize
+los nevegadores aplican un estilo por defecto
+puedo incluir un archivo normalize.css para reescrivir todos lso esitlos por defecto
+npm install --save normalize.css
+luego se aplica con el link href de siempre
+*{
+    box-sizing: border-box;   me aseguro que la cajas tengan el tamaño que les defini sin que el padin g las desforme
+    padding: 0;
+    margin: 0;
+}
+img{
+    max-width: 100%; para que las imagenes nunca sean mas grandes que el contenedor
+}
+*/
+
+/* teoria de cajas  
+Aquí tienes una lista más completa de etiquetas HTML que se comportan como bloques y como en línea:
+
+en bloque: 
+siempre se ajustan al ancho de su contenedor
+dividen el espacio en secciones
+el elemento siguiente se ubica debajo
+ej. h1 h2, p
+se les puede dar height, width
+
+### Etiquetas de bloque (block-level):
+`<address>, <article>, <aside>, <blockquote>, <canvas>, <dd>, <div>, <dl>, <dt>, <fieldset>, <figcaption>, <figure>, <footer>, <form>, <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <header>, <hr>, <li>, <main>, <nav>, <noscript>, <ol>, <p>, <pre>, <section>, <table>, <ul>`
+
+en linea:
+siempre se ajustan al ancho de su contenido, 
+el elemento siguiente  se alinean una tras otra
+ej. b, span
+a los elemento en linea NO se les puede dar hegith, width
+
+### Etiquetas en línea (inline-level):
+`<a>, <abbr>, <acronym>, <b>, <bdi>, <bdo>, <big>, <br>, <button>, <cite>, <code>, <data>, <datalist>, <dfn>, <em>, <i>, <img>, <input>, <kbd>, <label>, <map>, <mark>, <meter>, <object>, <output>, <picture>, <progress>, <q>, <ruby>, <s>, <samp>, <script>, <select>, <small>, <span>, <strong>, <sub>, <sup>, <svg>, <textarea>, <time>, <u>, <tt>, <var>, <wbr>`
+
+display block : completa la linea, se ajusta al conetenedor?, elementos en bloque
+display inline: elementos en linea, se ajusta al contenido, no completa la linea
+*/
+.cajas {
+    border: solid 1px black;
+    width: 50%;
+    height: 40px;
+    text-align: center;
+    align-content: center;
+}
+.inline_forced{
+    display: inline;
+}
+
+.estilos_cajas{
+    display: inline-block; /*se comporta como bloque pero puede tomar las props de un inline (ancho alto)*/
+    background-color: deepskyblue;
+    margin: 10px 15px; /* top botom, left right*/
+    padding: 10px;
+    width: 50vw;
+    height: 5rem;
+    border: solid 1px black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 4px 15px 1px gray; /*x y desenfoque borde color*/
+    text-shadow: 3px 3px 6px lightblue; /* x y desenfoque color*/
+    transform: rotate(45);
+}
+ .estilos_cajas p{
+    color: darkslateblue;
+    outline: ;
+}
+
+/* 
+outline 
+es un borde que no ocupa un espacio real sin afectar los tamaños
+*/
+
+.caja2{
+    width: 200px;
+    height: 100px;
+    margin: auto;   /*deja centrado el elemento*/
+    background-color: orange;
+
+    /* de este modo respeta el tamaño de la caja y agrega el borde por fuera
+    box-sizing: content-box;
+    border: 10px solid rebeccapurple;
+    */
+    /*con outline el borde se cloca sobre la caja pero no cambia su tamaño*/
+    outline: 10px solid rebeccapurple;
+}
+
+/**position
+el tamaño en el dom se reserva y los otros elementos no lo pueden ocupar 
+incluso si la movi de lugar con position top left
+static: nada
+relative
+avsolute
+fixed
+sticky
+*/
+.pos{
+    width: 200px;
+    height: 100px;
+    background-color: darkorange;
+    outline: 1px solid black;
+}
+.poscont{position: relative; left: 50px; background-color: aquamarine;}
+.position1{
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.position2{ 
+    position: relative;
+    top: 20px; /*desde el elemento anterior*/
+    left: 50px;
+}
+.position3{
+    position: relative;
+    z-index: 20;
+}
+.fixed{
+    /**figado al viewport, si hago scroll se mantiene en pantalla, ejemplo nab var, footer, scroll botons*/
+    position: fixed; /*paresido a absolute*/
+    width: 100%; /*OR left: 0; right: 0; funciona igual*/
+}
+.sticky{
+    /*en principio esta en el flujo regular, pero al hacer scroll queda fijo*/
+    /* pero se mantiene dentro de su contendor */
+    position: sticky;
+    top: 0; /**no puede faltar, es la distancioa al top del viewport*/
+    z-index: 1;
+    width: 50dvw;
+    align-self: start; /*si esta dentrodel agun elmento con display flex */
+}
+
+/* 
+display 
+afecta como se relacionana las cajas
+none
+block . ocupan todo
+inline. se ajusta al contenido NO se les puede dar hegith, width
+inline-block . en linea pero con alto ancho
+
+list-item
+
+table
+table-row
+table-column
+table-cell
+inline-table
+los table estan obsoletos en diseño
+
+grid
+flex
+los contenedores grid y flex se comportan como block
+
+inline-flex
+inline-grid
+*/
+
+/*overflow*/
+.overContainer{
+    border: solid 2px black;
+    height: 200px;
+    width: 50vw;
+    overflow: hidden; /*corta el exedente*/
+    overflow: scroll; /*scrollea*/
+    overflow-x: hidden; /*oculta el scroll*/
+    overflow: auto;
+}
+
+/*parrafos lado a lado*/
+.sideCont{
+    width:50%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.sideContent {
+display: inline-block;
+width: 30%; /* Ajusta el ancho según tus necesidades */
+margin-right: 1%; /* Espacio entre los párrafos */
+vertical-align: top; /* Alineación vertical opcional */
+}
+.P{background-color: orange;}
+.S{background-color: violet;}
+
+/*pseudo elementos
+no forman parte del dom, no son elementos
+
+::first-line    - block (en todos menos inline)
+::first-letter  - block (en todos menos inline)
+::placeholder
+::after         hijos - content(necesario) - inline
+::befere        hijos - content(necesario) - inline
+::selection
+*/
+
+.texto{
+    color: black;
+    width: 50%;
+    
+}
+.texto::first-letter{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.texto::first-line{
+    color: blue;
+}
+.texto::selection{color: aqua; background-color: yellowgreen ;
+    font-size: 1.6rem;
+}
+
+.input{color: black;}
+.input::placeholder{color: royalblue;}
+
+.after-before{margin: 10px; padding: 5px;
+    border: solid 1px black;
+    margin: 20px auto;
+    text-align: center;
+}
+.after-before::before{content: "antes de |"; color:blue; float: left;}
+.after-before::after{content: "| y despues!!!"; color: orange; float: right;}
+
+
+/* 
+PSEUDO CLASES
+escuchas de un evento que modifica el estilo
+:hover  . mouse esta ensima
+:link
+:visited
+:active
+:focus
+:lang   . funcion que ajusta el estilo segun el lenguaje
+
+*/
+.pseudoclases{
+    color: darkslategray;
+    border: solid 1px black;
+    margin: 20px auto;
+    width: 50%;
+    padding-left: 30px;
+    transition: all 1s;
+}
+
+.pseudoclases ul li{
+    transition: all 0.5s;
+}
+.pseudoclases ul li:hover{
+    color: blue;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+.pseudoclases:active{background-color: blue; color: white;}
+
+.pseudoclases a:link{color: green;}
+.pseudoclases a:visited{color: grey;}
+
+.pseudoinput:focus{outline: solid 2px red;}
+
+
+.pseudolang{
+border: solid 1px black;
+    margin: 20px auto;
+    width: 50%;
+    padding-left: 30px;
+}
+.pseudolang p:lang(es){
+    color: blue;
+}
+.pseudolang p:lang(en){
+    color: darkviolet;
+}
+
+/* object-fit:
+none . no aplica ningun fit
+fill
+contanis . la imagen se ajusta a su resolucion
+cover. se ajusta al contenedor y recorta los bordes que sobran
+scale-down. resolucion mas pequeña para clasar ,se queda con la mejor propiedad
+*/
+.img-cont{
+    border: solid 3px red;
+    height: 100px;
+    width: 230px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+.img-cont img{
+   height: 100%; /*se estira para igualar el contenedor*/
+    width: 100%; /*se estira para igualar el contenedor*/
+    border: solid 3px  blue;
+    margin: 0;
+   
+}
+
+.contain{
+    object-fit: contain;
+}
+ .cover{
+    object-fit: cover;
+}
+ .none{
+    object-fit: none;
+}
+.scale-down{
+    object-fit: scale-down;
+}
+.fill{
+    object-fit:fill;
+}
+
+.bottom{
+    object-fit: cover;
+    object-position: bottom; /* 10px*/
+}
+
+/*cursor
+https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor
+*/
+.alias {cursor: alias;}
+.all-scroll {cursor: all-scroll;}
+.auto {cursor: auto;}
+.cell {cursor: cell;}
+.col-resize {cursor: col-resize;}
+.context-menu {cursor: context-menu;}
+.copy {cursor: copy;}
+.crosshair {cursor: crosshair;}
+.default {cursor: default;}
+.e-resize {cursor: e-resize;}
+.ew-resize {cursor: ew-resize;}
+.grab {cursor: -webkit-grab; cursor: grab;}
+.grabbing {cursor: -webkit-grabbing; cursor: grabbing;}
+.help {cursor: help;}
+.move {cursor: move;}
+.n-resize {cursor: n-resize;}
+.ne-resize {cursor: ne-resize;}
+.nesw-resize {cursor: nesw-resize;}
+.ns-resize {cursor: ns-resize;}
+.nw-resize {cursor: nw-resize;}
+.nwse-resize {cursor: nwse-resize;}
+.no-drop {cursor: no-drop;}
+.none {cursor: none;}
+.not-allowed {cursor: not-allowed;}
+.pointer {cursor: pointer;}
+.progress {cursor: progress;}
+.row-resize {cursor: row-resize;}
+.s-resize {cursor: s-resize;}
+.se-resize {cursor: se-resize;}
+.sw-resize {cursor: sw-resize;}
+.text {cursor: text;}
+.url {cursor: url(myBall.cur),auto;}
+.w-resize {cursor: w-resize;}
+.wait {cursor: wait;}
+.zoom-in {cursor: zoom-in;}
+.zoom-out {cursor: zoom-out;}
+
+/*COLORES
+
+https://htmlcolorcodes.com/es/
+https://www.w3schools.com/colors/colors_groups.asp
+https://htmlcolorcodes.com/color-names/
+
+
+NOMBRES predef
+hex
+rgb
+rgba
+hsl
+hsla
+*/
+.div-color {
+    display: inline-block;
+    height: 100px; width: 100px;
+    border: solid 3px black;
+}
+.colname{
+    background-color: coral;
+}
+.col1rgb{
+    background-color: rgb(200, 150, 100);
+}
+.col1rgbA{
+    background-color:rgba(200, 150, 100, 0.5);
+}
+.col1hsl{
+    background-color: hsl(150, 70%, 70%);
+}
+.col1hsla{
+    background-color: hsl(150, 70%, 70%, 0.5);
+}
+.colhex{
+    background-color: #aa33ff;
+}
+
+/* 
+responsive desing
+mobile-first google les da mejor seo
+
+se trabajan con media queries
+no olvidar en el head el meta viewport para pantallas pequeñas
+ <meta name='viewport' content='width=device-width, initial-scale=1'>
+*/
+.resp{
+    width: 100%;
+    border: solid 3px black;
+    padding: 10px;
+    background-color: #e3e3e3;
+    overflow-y: auto;
+}
+.resp h3{
+  background-color: blueviolet;
+}
+.resp div{
+    width: 45%;
+    border: solid 3px black;
+    display: inline-block;
+    padding: 10px;
+    background-color: #c7c7c7;
+}
+
+@media only screen and (max-width: 500px){
+    .resp div{
+        display: block;
+        width: 100%;
+    }
+}
+
+/*
+MENU RESPONSIVO
+agregar el cdn de iconos font awersome
+<script src="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3QxQjVnRXVMSTJNeV8yaWxpaE95SFYyVUg0UXxBQ3Jtc0tuT1pvR194Y1cteDlDX0NJVW9ZUk9NdWpZNjM5dUpGdnNVRVItZXk4X3FkYy1FUndwWEkybkNvMDV2VUktakpWMFFhQ1Zibm5KbnlfYmVjRTZHdDdGUjhoMV9DMXF2bGhyYU1qaWZYbzVmZmYtY1pKYw&q=https%3A%2F%2Fkit.fontawesome.com%2F62ea397d3a.js&v=OWKXEJN67FE"></script>
+*/
+
+.nav{
+    background-color: slateblue;
+    position: relative;
+    z-index: 100;
+}
+
+.nav__li{
+    display: inline-block;
+    padding: 12px;
+    color: white;
+    align-content: center;
+    list-style-type: none;
+}
+
+.nav__responsive-li{ list-style-type: none; }
+
+.nav__li-container{
+    position: relative;
+    top:10px;
+    transition: all 1s;
+    z-index: 10;
+    display:  none;
+    height: 0px;
+    background-color: deepskyblue;
+    width: 100%;
+}
+
+.nav__li i, .nav__responsive-li i{
+    color: white;
+    text-decoration: none;
+    height: 1.5rem; width: 1.5rem;
+    display: inline-block;
+    border: solid 2px blue;
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.nav__li a, .nav__responsive-li a{
+    position: relative;
+    top: -10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    align-content: center;
+}
+
+.nav__li:hover, .nav__responsive-li:hover {
+    color: cyan;
+}
+.nav__li:hover > a, .nav__responsive-li:hover > a{
+    color: cyan;
+}
+
+.nav__responsive-li a{
+    text-decoration: none;
+}
+
+.nav__responsive-ul{display: none; z-index: 10; transition: all 1s;}
+.nav__responsive-button{
+    float: right;
+    font-size: 1.2rem;
+    border: solid 2px blue;
+    height: 1.5rem; width: 1.5rem;
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    margin-right: 10px;
+    text-align: center;
+    color: white;
+
+}
+
+@media only screen and (max-width: 650px){
+    .nav__ul {display: none;}
+    .nav__responsive-ul{
+        display: block;
+        position: absolute;
+        width: 95%;
+    }
+    .nav{
+        height: 50px;
+        width: 100%;
+        z-index: 100;
+    }
+}
+
+.nav__responsive-ul:hover > .nav__li-container{
+    position: relative;
+    top:10px;
+    display: inline-block;
+    height: 200px;
+    width: 100%;
+    transition: all 1s;
+    z-index: -10;
+}
+
