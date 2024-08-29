@@ -1274,6 +1274,7 @@ https://www.w3schools.com/cssref/css3_pr_transform.php
     transform: translateX(200px) scale(2,0.5) skew(-10deg);
 }
 
+/*clip-path*/
 .clip
 {
     /*ver https://bennettfeely.com/clippy/ */
@@ -1343,3 +1344,73 @@ BACKGROUND
     background-position: bottom right;
     background-repeat: no-repeat;
 }
+
+/*VARIABLES
+    utiles para sistem desing
+    temas
+    modo cloaro oscuro
+    mas en precompiled css: 
+
+    la sintaxis es:
+    definition:
+        :selector{
+            --var-name: value;
+        }
+    use:
+        css-propertie: var(--varname)
+    con diferentes selectores puedo reasignar el valor de un var-name
+*/
+
+:root{
+    --color-primary: rgb(255, 62, 62);
+}
+
+.varitem{
+    width:100%;
+    height: 50px;
+    background-color: var(--color-primary);
+}
+
+/*FILTER
+SON FILTROS OPTICOS PARA AFECTAR LA APARIENDA DE LOS ELEMENTOS
+    none
+    blur(px)
+    brightness(0-1)
+    contrast(int | %)
+    drop-shadow(medidas)
+    grayscale(%)
+    hue-rotate(deg)
+    invert(%)
+    opacity(%)
+    saturate(%)
+    sapia(%)
+    url("filters.svg#filter-id")
+
+    se pueden aplicar barios filtros simultaneamente
+*/
+
+.f-1 {filter: blur(5px);}
+.f-2 {filter: brightness(0);}
+.f-3 {filter: contrast(2);}
+.f-4 {filter: drop-shadow(3px 3px 3px red);}
+.f-5 {filter: grayscale(90%);}
+.f-6 {filter: hue-rotate(270deg);}
+.f-7 {filter: invert(100%);}
+.f-8 {filter: opacity(30%);}
+.f-9 {filter: saturate(40%);}
+.f-0 {filter: sepia(100%);}
+
+/*otras propiedades
+    direction: rtl ltr initial inherit
+    letter-spacing: medida;
+    scroll-behavior: smooth; ideal para scroll sueave entrea anchors
+    user-selected: none; no puede seleccionar ni copiar
+    text-shadow: x y blur color;
+    box-shadow: x y bluy color:
+*/
+/* 
+como seguir aprendiendo
+ - revisar continuamente los standares
+ - estar al tanto de propiedades y conceptos nuevos
+ - ver si tienen soporte de los navegadores 
+*/
