@@ -322,7 +322,7 @@ console.table(myArray);
 
 // DOM METHODS ************************************************************************************************
 
-write("DOM methods", "h2");
+write("DOM selectors", "h2");
 
 // nodeTypes:
 // document is a global object defined by the browser that represents the entire page
@@ -400,7 +400,7 @@ input.placeholder = 'enter some text';
 input.readonly = false;
 input.disabled = false;
 input.required = false;
-input.autofocus = true;
+input.autofocus = false;
 input.minLength = 5;
 input.maxLength = 100;
 input.className = 'input';
@@ -432,7 +432,7 @@ write('','input','','week');
 write('','input','','month');
 write('','input','','color');
 
-write('playing with the input classList', 'b');
+write('playing with the input classList add and remove', 'b');
 write('','br');
 let classInput = document.createElement('input');
 
@@ -448,3 +448,165 @@ function switchClass() {
     classInput.value = 'my color is '+ classes[currentIndex];
 }
 setInterval(switchClass, 1000);
+
+write('also can use:','b');
+write('classList.item(index) to get the class at index');
+write('classList.contains(className) to check if the class is present');
+write('classList.toggle(className) to add or remove the class');
+write('classList.replace(oldClass, newClass) to replace the old class with a new one');
+
+write('element contnent propoerties:', 'b');
+
+write('element.textContent: displays the text content of the element and its children');
+write('element.innerHTML: displays the HTML content of the element and its children');
+write('element.outerHTML: displays the HTML content of the element and its children');
+
+
+write('input.outerHTML is:', 'b');
+let html = String.raw;
+html = "`" + input.outerHTML + "`";
+const escapeHtml = (unsafe) => {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
+html = escapeHtml(html);
+write(html);
+
+// DOM ELEMENTS HANDLING ********************************************************************************************
+write("DOM ELEMENTS", "h2");
+
+// createElement
+
+write('createElement, createTextNode, CreateDocumentFragment, appendChild', 'b');
+let container = document.createElement('DIV'); // must be uppercase
+container.className = 'maincont';
+let list = document.createElement('LI');
+// createTextNode
+let textoList = document.createTextNode(' text createTextNode');
+// appendChild
+list.appendChild(textoList);
+container.appendChild(list);
+document.body.appendChild(container);
+
+// createDocumentFragment
+let frag = document.createDocumentFragment();
+for(let i = 0; i < 2; i++){
+    let li = document.createElement('LI');
+    li.textContent = 'list item ' + i;
+    frag.appendChild(li);
+}
+container.appendChild(frag);
+
+
+write('firstChild, lastChild, firstElementChild, lastElementChild, childNodes, children', 'b');
+// firstChild
+const first = container.firstChild;
+write('DIV firstChild: ' + first.textContent);
+// lastChild  
+const last = container.lastChild;
+write('DIV lastChild: ' +last.textContent);
+// firstElementChild
+const firstElement = container.firstElementChild;
+write('DIV firstElementChild: ' + firstElement.outerHTML);
+// lastElementChild
+const lastElement = container.lastElementChild;
+write ('DIV lastElementChild: ' + lastElement.outerHTML);
+// childNodes
+const childNodes = container.childNodes; // es un nodelist( cada node es un html object completo), que es diferentes de un array
+                                         // se puede recorrer con un foreach
+write('DIV have childNodes: ' + childNodes.length);
+// children
+const children = container.children; // es un html collection, que es un array, no se puede recorrer con un foreach, solo con "for (item of colecction)"
+write('DIV have children: ' + children.length);
+for (child of children){
+    write(child.textContent);
+}
+
+write('appendChild, removeChild, replaceChild, insertBefore, hasChildNodes', 'b');
+
+let div2 = document.createElement('DIV'); // must be uppercase
+div2.className = 'maincont';
+const oldParagraph = document.createElement('P');
+oldParagraph.innerText = ' text of the old paragraph';
+
+// appendChild
+div2.appendChild(oldParagraph);
+
+const newParagraph = document.createElement('B');
+newParagraph.innerText = ' text of the new paragraph';
+document.body.appendChild(div2);
+// replaceChild
+div2.replaceChild(newParagraph,oldParagraph );
+
+// insertBefore
+let beforeParagraph = document.createElement('P');
+beforeParagraph.innerText = ' text of the before paragraph';
+div2.insertBefore(beforeParagraph, newParagraph);
+
+// removeChild
+div2.removeChild(newParagraph);
+
+// hasChildNodes
+write('DIV2 have childNodes: ' + div2.hasChildNodes());
+
+write('parentElement, parentNode','b')
+// parentElement - if parent is not an element(its a node) return null
+write('DIV2 parent ELEMENT is '+ div2.parentElement)
+// parentNode - in some cases the parent is not an element, but it will always returned
+write('body parent NODE is '+ document.body.parentNode)
+
+write('nextSibling, previousSibling, nextElementSibling, previousElementSibling', 'b')
+
+let div3 = document.createElement('DIV'); // must be uppercase
+div3.className = 'maincont';
+document.body.appendChild(div3);
+
+const firstsilibing = document.createElement('P');
+firstsilibing.innerText = 'first sibling';
+const secondSilibing = document.createElement('P');
+secondSilibing.innerText = 'second sibling';
+
+div3.appendChild(firstsilibing);
+div3.appendChild(secondSilibing);
+
+// nextSibling - always returns a node
+write('nextSibling is "'+ firstsilibing.nextSibling.textContent + '"');
+
+// previousSibling
+write('previousSibling is "'+ secondSilibing.previousSibling.textContent + '"');
+
+// nextElementSibling - only returns elements
+write('nextElementSibling is "'+ firstsilibing.nextElementSibling.textContent + '"');
+
+// previousElementSibling
+write('previousElementSibling is "'+ secondSilibing.previousElementSibling.textContent + '"');
+
+
+write('closest', 'b')
+
+let div4 = document.createElement('DIV'); // must be uppercase
+div4.className = 'maincont';
+document.body.appendChild(div4);
+
+let div5 = document.createElement('DIV'); // must be uppercase
+div5.className = 'secondcont';
+div4.appendChild(div5);
+
+let header = document.createElement('H5');
+header.innerText = 'header';
+div5.appendChild(header);
+
+// closest
+write('header\'s closest DIV classname is "'+ header.closest('div').className + '"');
+
+
+
+
+write('this is the end. Thanks you for watching my code','h4');
+
+window.scrollTo(0, document.body.scrollHeight);
