@@ -1,0 +1,38 @@
+*{ 
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* selectore port tipo de tag */ 
+h1{font-size: 2.5rem;}
+h1, h2, h3 {
+    color: darkslateblue;
+    margin-top: 10px;
+    padding: 10px 0px 5px 20px;
+    background: linear-gradient(45deg, white, turquoise);
+    border-bottom: solid 2px turquoise;
+} 
+
+ h4 {
+    color: darkslateblue;
+    margin-top: 10px;
+    padding: 10px 0px 5px 20px;
+    background: linear-gradient(45deg, rgb(167, 255, 246),white , white );
+} 
+   
+.maincont {
+    background-color: aquamarine;
+    padding: 1rem;
+    width: 100%;
+}
+input{display:block; border-radius: 3px;}
+p, b, input {margin: 7px 0 0 10px;}
+
+.input{
+    border: solid 1px blue;
+    color: darkslateblue;
+}
+
+.red{background-color: red; border: solid 2px rgb(82, 0, 0);}
+.yellow{background-color:yellow ; border: solid 2px rgb(215, 154, 0);}
+.green{background-color: green; border: solid 2px rgb(1, 65, 1);}
