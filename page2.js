@@ -609,4 +609,10 @@ write('header\'s closest DIV classname is "'+ header.closest('div').className + 
 
 write('this is the end. Thanks you for watching my code','h4');
 
+let a = document.createElement('A');
+a.href = '/page3.html';
+a.textContent = 'or continue in page 3';
+
+document.body.appendChild(a);
+
 window.scrollTo(0, document.body.scrollHeight);

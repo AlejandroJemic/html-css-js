@@ -19,6 +19,17 @@ h1, h2, h3 {
     padding: 10px 0px 5px 20px;
     background: linear-gradient(45deg, rgb(167, 255, 246),white , white );
 } 
+
+input{display:block; border-radius: 3px;}
+p, b, input, a {margin: 7px 0 0 10px;}
+button{margin: 5px 0 0 10px;
+    border-radius: 3px;
+    border: solid 2px blue;
+    background-color: white;
+    color: blue;
+    padding: 5px;
+    cursor: pointer;
+}
    
 .maincont {
     background-color: aquamarine;
@@ -33,8 +44,6 @@ h1, h2, h3 {
     min-height: 10px;
 }
 
-input{display:block; border-radius: 3px;}
-p, b, input {margin: 7px 0 0 10px;}
 
 .input{
     border: solid 1px blue;
