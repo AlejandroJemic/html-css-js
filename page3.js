@@ -511,11 +511,29 @@ try {
             cont5.appendChild( createP(' fetch error: ' + error));
         });
     
+   
+    //fetch async await
+    const asyncFetch = async (url) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    }
+
+    cont5.appendChild( createP('async fetch to  https://jsonplaceholder.typicode.com/todos/3 ...'));
+    asyncFetch('https://jsonplaceholder.typicode.com/todos/3').then((data) => {
+        cont5.appendChild( createP('async fetch response is:'));
+        cont5.appendChild( clearJsonToHTML(JSON.stringify(data)));
+    })
+        
+
+
+
     //using axios
     write('axios','h3');
 
     write('this is the  axios message board','div','secondcont axios');
     let cont6 = document.querySelector('.axios');
+
 
     //get with axios
     getp = createP('axios get https://jsonplaceholder.typicode.com/todos/1 ...');
@@ -542,6 +560,21 @@ try {
         .catch((error) => {
             cont6.appendChild( createP(' axios error: ' + error));
         });
+
+        // axios async await
+        const asyncAxios = async (url) => {
+            const response = await axios.get(url);
+            return response.data;
+        }
+
+        cont6.appendChild( createP('async axios to  https://jsonplaceholder.typicode.com/todos/3 ...'));
+        asyncAxios('https://jsonplaceholder.typicode.com/todos/3').then((data) => {
+            cont6.appendChild( createP('async axios response is:'));
+            cont6.appendChild( clearJsonToHTML(JSON.stringify(data)));
+        })
+        
+    
+
 
 
     write('','br')
