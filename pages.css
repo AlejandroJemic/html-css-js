@@ -101,12 +101,24 @@ video{
     background-color: white;
 }
 .cuadrado2{
-
     border: dashed 2px black;
-    text-align: center;
-    
+    text-align: center;   
 }
 
+@keyframes aparecer{
+    from{ opacity: 0;}
+    to{ opacity: 1;}
+}
+
+.cuadrado3{
+    border: solid 2px indigo;
+    border-radius: 5px;
+    text-align: left;   
+    padding: 10px;
+    background-image: linear-gradient( to bottom, turquoise, rgb(64, 141, 224));
+    animation: aparecer 0.5s forwards 0.5s;
+    opacity: 0;
+}
 
 .circulo{
     position: relative;

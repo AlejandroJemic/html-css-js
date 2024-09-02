@@ -479,7 +479,7 @@ try {
     }
     
 
-    //  FileReader + Drag &  ******************************************************************************
+    //  FileReader + Drag &  Drop ******************************************************************************
     write(' FileReader + Drag & Drop','h2')
     write('Drag a drop your image video or text file here','div', 'secondcont cuadrado2');
     write('','div', 'secondcont resultado');
@@ -590,14 +590,277 @@ try {
         obj.style.border = 'dashed 2px black';
     }
     
-    //  IndexedDB
-    //  IndexedDB + Drag & Drop
+    //  IndexedDB *************************************************************************************
+    write(' IndexedDB ','h2')
+    write('see examples and coments in soruce code')
+    write('or play in the console with the following CRUD commands:')
+    write(' - AddObject(obj, "nombres")');
+    write(' - readAllObjecs("nombres")');
+    write(' - getObjectByKey("nombres", key)');
+    write(' - updateObject(obj, key, "nombres")');
+    write(' - deleteObject(key, "nombres")');
+    write(' - getObjectByValue("nombres", property, value)');
 
-    //  MatchMedia
-    //  Intersection Observer
-    //  Lazy Load
+    // es asincrona, es orientada a objetos, trabaja con eventos del DOM
+    const storeName = 'nombres';
+    let versionNum = 1;
+    // abrir la connexión
+    const IDBConnection = window.indexedDB.open('IDBStorage',versionNum); // abre/crea la base de datos
+    
+    // crear el alamacen de datos
+    IDBConnection.addEventListener('upgradeneeded', (ev) => { // watch for upgradeneeded - create tables
+        const  db =  IDBConnection.result;
+        db.createObjectStore(storeName, 
+            { autoIncrement: true}
+            );
+        db.addEventListener('success', (ev) => {console.log('created store')})
+    });
+
+    // ver estado de la connecxión
+    IDBConnection.addEventListener('success', (ev) => { // watch for success 
+        console.log('connection success',  IDBConnection.result);
+    });
+    IDBConnection.addEventListener('error', (ev) => { // watch for error
+        console.log('connection error',  IDBConnection.result);
+    });
+
+    // CRUD
+    // agregar datos(objetos) a un db store determinado
+    function AddObject(obj, store) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readwrite');
+        const DBObject = IDBtx.objectStore(store);
+        DBObject.add(obj);
+        IDBtx.addEventListener('complete', (ev) => {
+            console.log('added object to ' + store, obj);
+        })
+        IDBtx.complete;
+    }
+
+    //leer objetos de un store
+    function readAllObjecs(store) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readwrite');
+        const DBObject = IDBtx.objectStore(store);
+        const cursor = DBObject.openCursor(); // <----------------- openCursor !!!!!
+        cursor.addEventListener('success', (ev) => {
+            if (cursor.result) {
+                console.log(cursor.result.value);
+                cursor.result.continue();
+            }
+            else console.log('end of cursor');
+        });
+    }
+
+    //actualizar objetos
+    function updateObject(obj, key, store) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readwrite');
+        const DBObject = IDBtx.objectStore(store);
+        DBObject.put(obj,key); //<------------------------------- PUT 1!!!!!  insert or update
+        IDBtx.addEventListener('complete', (ev) => {
+            console.log('update object to ' + store, obj);
+        })
+        IDBtx.complete;
+    }
+
+    // eliminar objetos
+    function deleteObject(key, store) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readwrite');
+        const DBObject = IDBtx.objectStore(store);
+        DBObject.delete(key); //<------------------------------- DELETE 1!!!!! 
+        IDBtx.addEventListener('complete', (ev) => {
+            console.log('deelte object to ' + store + ' at key ' + key);
+        })
+        IDBtx.complete;
+    }
+
+
+    // leer un objeto con una key espesifica
+    function getObjectByKey(store, key) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readonly');
+        const DBObject = IDBtx.objectStore(store);
+        const request = DBObject.get(key);
+        request.addEventListener('success', (event) => {
+            if (request.result) {
+              console.log('se encontro el objeto ' + JSON.stringify(request.result));
+        }});
+    }
+    
+
+    // leer un objeto que contenga una propiedad con un valor espesifico
+    // nombres => nombre = 'juan'
+    function getObjectByValue(store, property, value) {
+        const db = IDBConnection.result;
+        const IDBtx = db.transaction([store], 'readonly');
+        const DBObject = IDBtx.objectStore(store);
+        const cursor = DBObject.openCursor();
+        const results = [];  // Array para almacenar los objetos coincidentes
+        cursor.addEventListener('success', (event) => {
+            if (cursor.result) {
+                if (cursor.result.value[property] === value) {
+                    console.log(` se encotro un objeto ${property} = ${value} en ${store}`);
+                    results.push(cursor.result.value);  // Añadir objeto coincidente al array
+                }
+                cursor.result.continue();
+            } else {
+               console.log('busqueda finalizada:', results);
+            }
+        });
+    }
+
+    // delete store object (empela el mismo evento upgradeneeded que para crearlas )
+    // request.addEventListener('upgradeneeded', (ev) => {
+    //     const db = ev.target.result;
+    //         const deleteStoreName = 'tasks';
+    //     // Verifica si el object store existe antes de intentar eliminarlo
+    //     if (db.objectStoreNames.contains(deleteStoreName)) {
+    //         db.deleteObjectStore(deleteStoreName);
+    //         console.log('Object store ' + deleteStoreName + ' eliminado exitosamente.');
+    //     } else {
+    //         console.log('El object store ' + deleteStoreName +' no existe.');
+    //     }
+    // });
+
+
+
+
+
+    //  MatchMedia ******************************************************************************
+    write(' MatchMedia ','h2')
+    write('see examples and coments in soruce code')
+    // para trabajar con responsive desing pero cosas que no se pueden lograr con css normal
+    // media querys
+    write('','div',' secondcont mqdiv')
+    mqdiv = document.querySelector('.mqdiv');
+
+    const mq = window.matchMedia('(max-width: 600px)'); 
+    function handleWidthChange(ev) {
+        if (mq.matches) {
+           mqdiv.textContent = 'el tamaño de la pantalla es de 600px';
+        }
+        else{
+            mqdiv.textContent = 'max-width: 600px = dont match';
+        }
+    }
+    mq.addEventListener('change', handleWidthChange);
+    handleWidthChange();
+
+
+
+
+    //  Intersection Observer *****************************************************************
+    write(' Intersection Observer ','h2')
+    write('','div',' secondcont observer')
+    //es para ver si algo es visible o no en el viewport
+    const observerdiv = document.querySelector('.observer');
+
+    const obs_options ={
+        rootMargin: '0px 0px 0px 0px', // margenes en el viewport para que se vea
+        treshold: 0.5 // a que altura del elemento se considera viseble, 1: se ve completo, 0: apenas visible
+    }
+    const observer = new IntersectionObserver(calback_Observer, obs_options); //<-----------------
+    
+    function calback_Observer(entries){
+        
+        // for a single element 
+        const entry = entries[0];
+        if(entry.isIntersecting)
+        {observerdiv.textContent = 'isIntersecting = true';}
+
+        // for al the elements
+        for(myEntry of entries){
+           if(myEntry.isIntersecting){
+               //{console.log('se esta viendo la caja ' + myEntry.target.textContent);
+            }
+        }
+    }
+    // for a single eleement
+    observer.observe(observerdiv);
+
+    // for al the elements
+    divs = document.querySelectorAll('.secondcont');
+    for (const currentDiv of divs) {
+        observer.observe(currentDiv)
+    }
+    
+
+
+    //  Lazy Load ***************************************************************************
+    /*
+    aprovechamos el IntersectionObserver
+    para hacer lazy loading de elementos cuando tengo nuevo scroll
+    */
+   
+    write(' Lazy Load ','h2')
+    write('see examples and coments in soruce code')
+    write('','div',' secondcont Lazy')
+
+    //container
+    let publications = document.querySelector('.Lazy');
+    
+    let contador = 1;
+    let lastshow = false;
+    // ftech and write publications
+    const getPublicaciones = async (num) => {
+        const req = await fetch('publications.json');
+        const content = await req.json();
+        const arr = content.publications;
+        const fragment = document.createDocumentFragment();
+        for(let i = 0; i < num; i++){
+            if( arr[contador] !== undefined) 
+            {
+                const newPublication = document.createElement('div');
+                newPublication.className = 'cuadrado3';
+                newPublication.innerHTML = contador.toString() + '</br> ' + arr[contador].title + '</br> ' + arr[contador].text;
+                fragment.appendChild(newPublication);
+                contador++;
+                if(i == num -1) observerLazy.observe(newPublication); //< ------------------- MOST IMPOTANT LINE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }else if(lastshow === false){
+                let final = document.createElement('h4');
+                final.textContent = "end of publications";
+                fragment.appendChild(final);
+                lastshow = true;
+                break;
+            }
+        }  
+        publications.appendChild(fragment);
+    }
+
+
+    const callback_publications = (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+            getPublicaciones(2);
+        }
+    };
+    const observerLazy = new IntersectionObserver(callback_publications );
+
+    // write initial publications
+    getPublicaciones(2);
+
+
+    // visibility Change ***********************************************************************
+    write(' visibility Change ','h2')
+    write('see examples and coments in soruce code')
+    // usefull to control stop playing videos or other elements when the page is not visible
+
+    // write('','div',' secondcont visibility')
+    // let visibility = document.querySelector('.visibility');
+
+    window.addEventListener('visibilitychange', (ev) => {
+        if(ev.target.visibilityState === 'visible')    
+        {console.log('la pestana es visible');}
+        else
+        {console.log('la pestana es oculta');}
+    
+    })
+    
+
     //  Notifications 
-    //  Web Workers
+    //  Web Workers // permiten ejecutar tareas en paralalo para no bloquear el hilo de la pagina
     //  Same Origin Politic
     //  Objeto Navigator
     //  Memoization
