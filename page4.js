@@ -847,20 +847,104 @@ try {
     write('see examples and coments in soruce code')
     // usefull to control stop playing videos or other elements when the page is not visible
 
-    // write('','div',' secondcont visibility')
-    // let visibility = document.querySelector('.visibility');
+    write('','div','visibility green')
+    let visibility = document.querySelector('.visibility');
 
     window.addEventListener('visibilitychange', (ev) => {
         if(ev.target.visibilityState === 'visible')    
-        {console.log('la pestana es visible');}
+        {
+            console.log('la pestana es visible'); 
+            visibility.textContent = 'la pestana es visible';
+        }
         else
         {console.log('la pestana es oculta');}
     
     })
     
 
-    //  Notifications 
-    //  Web Workers // permiten ejecutar tareas en paralalo para no bloquear el hilo de la pagina
+    //  Notifications *****************************************************************************
+    write(' Notifications ','h2')
+    write('see examples and coments in soruce code')
+    write('','input','notif-input','text');
+    write('send','button','send-button');
+    let textinput = document.querySelector('.notif-input');
+    textinput.placeholder = 'enter notification text';
+
+    //validate if the browser supports notifications
+    if(!'Notification' in window){
+        write('Notification API isn\'t supported','div','yellow');
+    }else{
+        write('Notification API is supported','div','green');
+    }
+
+    //request permission
+    Notification.requestPermission( () => {
+        if(Notification.permission === 'granted')
+        {  
+            console.info('Notifications are granted');
+        }
+        else
+        {
+            console.error('Notifications are not granted');
+        }
+    });
+
+
+    document.querySelector('.send-button').addEventListener('click', () => {
+        sendNotification(textinput.value);
+        textinput.value = '';
+    });
+
+    function sendNotification(msg, body){
+        if(Notification.permission === 'granted') new Notification(msg, {body: body});
+        else  console.error('Notifications are not granted');
+    }
+    
+
+    // Web Workers *****************************************************************************
+    write(' Web Worker ','h2')
+    write('see examples and coments in soruce code')
+    // permiten ejecutar tareas en paralalo para no bloquear el hilo de la pagina
+    // tipos (dedicated worker, shared worker, service worker, abstract worker)
+    // dedicated worker: Worker() (constructor)
+    // el worker no tiene el objeto window por tanto su api es mucho mas limitada
+    // parametro options (type, credential y name)
+    // metodo postMessage() (enviar mensajes entre el worquer y el script principal)
+    // eneto onmessage (recibir mensajes entre el worquer y el script principal)
+    // metodo terminate() (finalizar la ejecucion y destruir el worker)
+    // politica de origen cruzado (same-origin, cross-origin)
+    // event loop y modelo de concurrencia (single thread, multi thread)
+    const myworker = new Worker('worker.js');
+
+    write('','input','worker-input','text');
+    let workerinput = document.querySelector('.worker-input');
+
+    write('post Message','button','send-button2');
+    postButton = document.querySelector('.send-button2');
+    postButton.addEventListener('click', () => {
+        console.log('sending message: ' + workerinput.value);
+        myworker.postMessage(workerinput.value);
+    })
+
+    write('','div','secondcont worker','text');
+    let textinput2 = document.querySelector('.worker');
+ 
+    myworker.addEventListener('message', (ev) => { 
+        textinput2.textContent = ev.data + ' (check out console logs)'; 
+        postButton.innerHTML = 'no more messages';
+        postButton.setAttribute('disabled', '');
+        myworker.terminate();
+        console.log('worker is terminated');
+    });
+
+   
+
+ 
+
+
+
+
+
     //  Same Origin Politic
     //  Objeto Navigator
     //  Memoization
