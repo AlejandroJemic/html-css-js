@@ -940,16 +940,239 @@ try {
    
 
  
+    //  Objeto Navigator **********************************************************************
+    write(' Objeto Navigato ','h2')
+    write('see examples and coments in soruce code')
+    // interfaces de objetos navigator:
+    // navigatorID
+    // navigatorLanguage
+    // navigatorOnLine
+    // navigatorContentUtils
+    // navigatorStorageUtils
+    // navigatorCookies
+    // navigatorCurrentHardware
+    // navigatorPlugins
+    // navigatorUserMedia    
+
+    //propiedades estandar del navegador
+    // navigatorID.appCodeName // devuelve el nombre codigo del navegador. no siempre es el correcto
+    // navigatorID.appName // devuelve el nombre oficial del navegador. no siempre es el correcto
+    // navigatorID.appVersion // devuelve la version del navegador. no siempre es el correcto
+    // networkInformation.conection // devuelve un objeto  networkInformation con informacion de la red
+    
+    // navigatorGeolocation.geolocation // devuelve un objeto navigatorGeoLocation
+    // navigatorCurrentHardware.hardwareConcurrency // devuelve el numero de nucles logicos disponibles
+    
+    // navigatorLanguage.language // devuelve el idioma del navegador. no siempre es el correcto
+    // navigatorLanguage.userLanguage // devuelve el idioma del navegador. no siempre es el correcto
+    // navigatorLanguage.browserLanguage // devuelve el idioma del navegador. no siempre es el correcto
+    // navigatorOnLine.onLine // devuelve un booleano que indica si el navegador se encuentra conectado a la red
+    // navigatorContentUtils.cookieEnabled // devuelve un booleano que indica si las cookies estan habilitadas
+    // navigatorStorageUtils.appCacheEnabled // devuelve un booleano que indica si el navegador acepta caches
+    write('Properties', 'b'); write('','br')
+    write('gives informetion about the currente broser and hardware');
+    write('navigator.userAgent: ' + navigator.userAgent);
+    write('navigator.appCodeName: ' + navigator.appCodeName,);
+    write('navigator.appName: ' + navigator.appName);
+    write('navigator.appVersion: ' + navigator.appVersion);
+    write('navigator.connection: ' + navigator.connection);
+    write('navigator.geolocation: ' + navigator.geolocation);
+    write('navigator.hardwareConcurrency: ' + navigator.hardwareConcurrency);
+    write('navigator.mimeTypes: ' + navigator.mimeTypes);
+    write('navigator.language: ' + navigator.language);
+    write('navigator.languages: ' + navigator.languages);
+    write('navigator.onLine: ' + navigator.onLine);
+    write('navigator.plugins: ' + navigator.plugins);
+    write('navigator.cookieEnabled: ' + navigator.cookieEnabled);
+    write('navigator.permissions: ' + navigator.permissions);
+    write('navigator.platform: ' +  navigator.platform);
+    write('navigator.serviceWorker: ' + navigator.serviceWorker);
+    write('navigator.appCacheEnabled: ' + navigator.appCacheEnabled);
+
+
+    console.log('navigator.userAgent:',  navigator.userAgent);
+    console.log('navigator.appCodeName:',  navigator.appCodeName,);
+    console.log('navigator.appName:',  navigator.appName);
+    console.log('navigator.appVersion:',  navigator.appVersion);
+    console.log('navigator.connection:',  navigator.connection);
+    console.log('navigator.geolocation:',navigator.geolocation);
+    console.log('navigator.hardwareConcurrency:',  navigator.hardwareConcurrency);
+    console.log('navigator.language:',  navigator.language);
+    console.log('navigator.languages:',  navigator.languages);
+    console.log('navigator.mimeTypes:',  navigator.mimeTypes);
+    console.log('navigator.onLine:',  navigator.onLine);
+    console.log('navigator.plugins:',  navigator.plugins);
+    console.log('navigator.cookieEnabled:',  navigator.cookieEnabled);
+    console.log('navigator.permissions:' , navigator.permissions);
+    console.log('navigator.platform:' , navigator.platform);
+    console.log('navigator.serviceWorker:' , navigator.serviceWorker);
+    console.log('navigator.appCacheEnabled:',  navigator.appCacheEnabled);
+
+    // METHODS
+    //  navigator.getUserMedia // solicita permiso y devuelve el stream de la camara o el mocrofono
+    // navigator.mediaDevices.getUserMedia // solicita permiso y devuelve el stream de la camara o el mocrofono
+    // navigator.mediaDevices.enumerateDevices // devuelve un array con los dispositivos de entrada y salida
+    // navigator.mediaDevices.getSupportedConstraints // devuelve un array con las propiedades soportadas por el navegador
+    // navigator.registerContentHeathers // permite al webs registrarso com oposibles controladores de un mime type
+    // navigator.registerProtocolHandler // permite al navegador registrarse como controlodares de un protocolo
+    // navigator.requestMediaKeySystemAccess // devuelve una promesa para un objeto MediaKeySystemAccess
+    // navigator.javaEnabled // devuelve un booleano que indica si el navegador acepta java
+    // navigator.sendBeacon // usado para trasmitir de forma asincrona conjuntos pequeños de datos http del agente usuario al servidor
+    // navigator.vibrate // emite una secuencia de vibraciones
+
+    write('Methods', 'b'); write('','br')
+    write(' navigator.getUserMedia:   solicita permiso y devuelve el stream de la camara o el mocrofono');
+    write('navigator.mediaDevices.getUserMedia:   solicita permiso y devuelve el stream de la camara o el mocrofono');
+    write('navigator.mediaDevices.enumerateDevices:   devuelve un array con los dispositivos de entrada y salida');
+    write('navigator.mediaDevices.getSupportedConstraints:   devuelve un array con las propiedades soportadas por el navegador');
+    write('navigator.registerContentHeathers:   permite al webs registrarso com oposibles controladores de un mime type');
+    write('navigator.registerProtocolHandler:   permite al navegador registrarse como controlodares de un protocolo');
+    write('navigator.requestMediaKeySystemAccess:   devuelve una promesa para un objeto MediaKeySystemAccess');
+    write('navigator.javaEnabled:   devuelve un booleano que indica si el navegador acepta java');
+    write('navigator.sendBeacon:   usado para trasmitir de forma asincrona conjuntos pequeños de datos http del agente usuario al servidor');
+    write('navigator.vibrate:   emite una secuencia de vibraciones');
+    write('and many more...','b'); write('','br')
 
 
 
 
 
-    //  Same Origin Politic
-    //  Objeto Navigator
-    //  Memoization
-    //  Caché
+
+
+
+    //  Memoization ***********************************************************************************************
+    // is a proccess that allow smaler execution time for a better performance and user experience
+    write('Memoization','h2')
+    write('is a proccess that allow smaller execution time for a better performance and user experience')
+    write('see examples and coments in soruce code')
+
+    // los valores son agregados a un array y se guardan, de modo aque si se requieren en el futuro ya se disponen del valor
+    // los valores que ya se han solicitado, no se vuelven a solicitar
+    function compute(num){
+        let a = 0;
+        let b = 0;
+        let c = 0;
+        for (let i = 0; i < num; i++){
+            a += i
+            for (let j = 0; j < num; j++){
+                b += j
+                c+= a*b;
+            }
+        }
+        return c    
+    }
+
+    let cache = []
+    const memorizer = func => {
+        return e =>{
+            const index = e.toString();
+            if(cache[index] === undefined){
+                cache[index] = func(e);
+            }
+            return cache[index];
+        }
+    }
+    const computeWithMEN = memorizer(compute);
+
+    const logExecution = func => {
+        return (...args) => {
+            const start = new Date();
+            const result = func(...args);
+            const end = new Date();
+            console.log(result, `time: ${(end - start) / 1000} segundos`);
+            return result;
+        };
+    };
+
+
+    const loggedCompute = logExecution(compute);
+    const loggedComputeWithMEN = logExecution(computeWithMEN);
+
+    // Pruebas
+    console.log('running normaly:');
+    loggedCompute(6000);
+    loggedCompute(6000);
+    loggedCompute(6000);
+    loggedCompute(6000);
+
+    console.log('runing with memorization:');
+    loggedComputeWithMEN(6000);
+    loggedComputeWithMEN(6000);
+    loggedComputeWithMEN(6000);
+    loggedComputeWithMEN(6000);
+    loggedComputeWithMEN(6000);
+
+    
+    //  Caché ***************************************************************************************************
+    write('Caché','h2')
+    write('see examples and coments in soruce code')
+
+    // lo que trabajamos con cache  lo trabajamos con promesas
+    // es una memoria a corto plaso que almacena informacion para que no se solicite muchas veses lo mismo
+
+    const playCache = async () => await caches.open('archivos')
+    .then(cache => {
+        console.log('cache opened ok')
+        
+        // adding one file
+        cache.add('page4.js') // fetch a put request
+            .then(() =>     
+            {    
+                console.log('added page4.js')
+
+                // fetch a file form cache
+                cache.match('page4.js')
+                    .then(file => console.log('got file form cache', file))
+                    .catch(err => console.log(err))
+
+                // delete a file form cache
+                cache.delete('page4.js')
+                    .then(() => console.log('delete file form cache'))
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err)) 
+       
+        // adding many files
+        cache.addAll(['page2.js','page3.js'])
+            .then(() => {
+                console.log('added page2.js and page3.js')
+
+                 // fetching many files from cache
+                cache.matchAll(['page2.js','page3.js'])
+                .then(files => console.log('got fileS form cache', files))
+                .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+
+        //fetch and cache.put en conjunto
+        fetch('pages.css')
+            .then(res => cache.put('pages.css', res) )
+            .catch(err => console.log(err))
+
+        // listing cache keys
+        cache.keys()
+            .then(keys => console.log('cache keys', keys))
+            .catch(err => console.log(err))
+       
+    }).catch(err => console.log(err))
+
+    playCache();
+
+
     //  Service Workers
+
+
+
+
+
+
+
+
+
+
+
+
+    
     //  Reto del Chat Realtime
     //  Cachear sitio web y mostrarlo offline
     //  Cookies
