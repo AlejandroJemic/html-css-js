@@ -1219,30 +1219,275 @@ try {
             psw.textContent = 'pong from serviceWorker.js';
             swpanel.appendChild(psw);
         });
-
-
-
       }
       else{ write ('service worker not supported','div','yellow') }
 
 
-
-
-
-
-
-
-
-    //  Cachear sitio web y mostrarlo offline
+    //  Cachear sitio web y mostrarlo offline *************************************************
     write('offline browsing support with servise Worker','h2')
     write('check out serviceWorker.js for code example')
-    //  Cookies
-    //  Crear aviso de uso de cookies
-    //  Objeto Screen
-    //  Objeto Canvas
+
+
+
+
+    //  Cookies **********
+    write('Cookies','h2')
+    write('see examples and coments in soruce code')
+    // son simples datos o archivos que se guardaron en el navegador del usuario
+    // exeptuadas
+    /*
+      Cookies de entrada del usuario
+      Cookies de identificacion o autenticacion (unicamante session)
+      Cookies de seguridad del usuario
+      Cookies de privacidad
+      Cookies de reproductor multimedia
+      Cookies de sesion para equilibrar la carga
+      cookies de personalizacion de la interfaz del usuario
+      cookies de complemento plug in para intercambiar contenidos socieles
+    */
+    // no exeptuadas
+    /*
+      cookies de configuracion
+      cookies de historial
+      cookies de publicidad
+    */
+    // cookies propias(mi pagina) o de terceros
+    // por finalidad
+    /*
+    de analisis
+    publicitarias
+    sociales necesarias por las redes sociales
+    */
+    
+    // 4 kb
+
+      //crar una cookie
+      // name=value;atr;atr...
+      document.cookie = "name=valor";
+      
+    let cookieAtr = [
+        "expires=10",
+        "path='/'",
+        "age=10",
+        "domain='localhost'",
+        "secure=true",
+        "sameSite='strict'"
+    ]
+    function crearCokkie(name, value, cookieAtr){
+      document.cookie = `${name}=${value};${cookieAtr.join(';')};`;
+    }
+    document.cookie = crearCokkie('name', 'valor', cookieAtr);
+
+    // leer las cookies
+    let cookies = document.cookie;
+    if(cookies) write(cookies,'div','green');
+    else write('no cookies','div','yellow');
+
+    function obtenerCookies(){
+    let cookies = document.cookie;
+    return cookies.split(';');
+    }
+
+    function obtenerCookieValue(name){
+    let cookies = obtenerCookies();
+    for(let i = 0; i < cookies.length; i++){
+        let cookie = cookies[i].split('=');
+        if(cookie.toString().startsWith(name) ) return cookie[1]; // return the value
+    }
+    return null;
+    }
+
+    //actualizar una cookie
+    document.cookie = "name=valornuevo";
+
+    // borrar una cookie
+    document.cookie = "name=0;max-age=0";
+
+    write('en caso de usar cookies que recopilen datos SE DEBE PREGUNTAR AL USUARIO SI PERMITE USAR COOKIES','div','yellow');
+
+
+
+
+    //  Objeto Screen ********************************************************************    
+    write('Objeto Screen','h2')
+
+    ancrhoPantalla = screen.width;
+    altoPantalla = screen.height;
+
+    anchoDisponible = screen.availWidth; // es el espacion sin la barra de tareas 
+    altoDisponible = screen.availHeight; // es el espacio sin la barra de tareas
+
+    viewportHeight = screen.innerHeight;
+    viewportWidth = screen.innerWidth;
+
+    resolucionPantalla = screen.width + 'x' + screen.height;
+    resolucion = screen.pixelDepth ; // resolucion de color de la pantalla
+    profuncidad = screen.colorDepth; // profundidad de bis de la paleta de colores
+
+    write('anchura de la pantalla: ' + ancrhoPantalla);
+    write('altura de la pantalla: ' + altoPantalla);
+    write('anchura de la pantalla disponible: ' + viewportWidth);
+    write('altura de la pantalla disponible: ' + viewportHeight);
+    write('anchura disponible: ' + anchoDisponible);
+    write('altura disponible: ' + altoDisponible);
+    write('resolución de la pantalla: ' + resolucionPantalla);
+    write('resolución: ' + resolucion);
+    write('profundidad: ' + profuncidad);
+
+    //  Objeto Canvas ********************************************************************
+    
+    
+    write('Objeto Canvas','h2')
+    // los navegadores actuales vienen optimizados por la aceleracion de hardware por GPU
+    write('','div','secondcont canvascont')
+    let canvascont = document.querySelector('.canvascont');
+    let canvas = document.createElement('canvas');
+
+
+
+    
+    canvas.style.border = '1px solid black';
+    canvas.style.backgroundColor = '#fff';
+    canvas.style.width = (window.innerWidth -100).toString() + 'px';
+    canvas.style.height = '300px';
+    canvas.style.margin = 'auto';
+    canvas.style.display = 'block';
+    canvascont.style.padding = 'auto';
+    canvascont.appendChild(canvas);
+
+
+    
+    // se requiwere el contexto directwrite y direct2d para hacer graficos
+    let ctx = canvas.getContext('2d');
+    //draw rectangule
+    // ctx.lineWidth = 3;
+    // ctx.strokeStyle = 'red';
+    // // fillRect(x,y,width,height)
+    // ctx.strokeRect(10,10,100,100);
+    // ctx.fillStyle = 'white';
+    // ctx.fillRect(30,30,100,100);
+    // ctx.strokeRect(30,30,100,100);
+
+    //lineTo(x,y)
+    // ctx.strokeStyle = 'darkviolet';
+    // ctx.beginPath();
+    // ctx.moveTo(10,10);
+    // ctx.lineTo(30,25);
+    // ctx.lineTo(135,25);
+    // ctx.lineTo(155,40);
+    // ctx.lineTo(155,115);
+    // ctx.lineTo(135,130);
+    // ctx.lineTo(30,130);
+    // ctx.lineTo(10,110);
+    // ctx.stroke();
+    // ctx.closePath();
+
     //  Crear un web paint
+    let painting;
+    const dif = canvas.getBoundingClientRect();
+
+    canvas.addEventListener('mousedown', (e) => {
+        painting = true;
+        ctx.strokeStyle = 'darkblue';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - dif.left, e.clientY - dif.top);
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        if (painting) {
+            ctx.lineTo(e.clientX - dif.left, e.clientY - dif.top);
+            ctx.stroke();
+        }
+    });
+    canvas.addEventListener('mouseup', () => {
+        painting = false;
+        ctx.closePath();
+    });
+    canvas.addEventListener('mouseleave', () => {
+        painting = false;
+        ctx.closePath();
+    });
+
+    drawLandScape();
+
+    function drawLandScape(){
+        console.log('dibujando');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawSky();
+        //montañas
+        drawMountain(0.1, 0.75, 0.3, 0.25, '#556B2F');
+        drawMountain(0.3, 0.75, 0.4, 0.375, '#6B8E23');
+        drawMountain(0.5, 0.75, 0.3, 0.25, '#8B4513');
+    
+        // Dibuja árboles
+        drawTree(0.15, 0.85);
+        drawTree(0.65, 0.85);
+    }
+
+    function drawSky(){   
+        // Cielo
+        ctx.fillStyle = '#87CEEB';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Sol
+        ctx.beginPath();
+        //arc(x,y,radius,startAngle,endAngle,anticlockwise)
+        ctx.arc(canvas.width * 0.8, canvas.height * 0.3, 20, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.closePath();
+
+        // Hierba
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(0, canvas.height * 0.75, canvas.width, canvas.height * 0.25);
+    }
+
+    function drawMountain(xFactor, yFactor, widthFactor, heightFactor, color) {
+        const x = canvas.width * xFactor;
+        const y = canvas.height * yFactor;
+        const width = canvas.width * widthFactor;
+        const height = canvas.height * heightFactor;
+    
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + width / 2, y - height);
+        ctx.lineTo(x + width, y);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function drawTree(xFactor, yFactor) {
+        const x = canvas.width * xFactor;
+        const y = canvas.height * yFactor;
+    
+        // Tronco
+        ctx.fillStyle = '#8B4513';
+        ctx.fillRect(x, y, canvas.width * 0.02, canvas.height * 0.1);
+    
+        // Hojas
+        ctx.beginPath();
+        ctx.moveTo(x - canvas.width * 0.05, y);
+        ctx.lineTo(x + canvas.width * 0.01, y - canvas.height * 0.1);
+        ctx.lineTo(x + canvas.width * 0.05, y);
+        ctx.closePath();
+        ctx.fillStyle = '#006400';
+        ctx.fill();
+    }
+
+    window.addEventListener("resize", () => {
+        const viewportWidth = window.innerWidth;
+        console.log(`The viewport's width is now ${viewportWidth}px`);
+        canvas.style.width = (window.innerWidth - 200).toString() + 'px';
+        ctx = canvas.getContext('2d');
+        drawLandScape();
+    });
 
 
+
+
+
+    
     //  Cargar páginas dinámicas
 
     write('','br')
