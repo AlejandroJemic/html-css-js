@@ -1159,7 +1159,71 @@ try {
     playCache();
 
 
-    //  Service Workers
+    //  Service Workers *******************************************************************************************
+      write('Service Workers','h2')
+      write('see examples and coments in soruce code')
+
+      // es un script js que intercepta todas las peticiones del navegador
+      // tanto de ida como de vuelta
+      // tiene muchos add event listener ya que escucha muchos susesos
+      // son archivos que quedan istalados en el computador, y funcionan incluso si deje la pagina o cerre el browser
+      // ya que corren en un hilo aparte y quedan guardados en el almacenamiento local del usuario/dispositivo
+      // lifecicle
+      // https://developer.chrome.com/docs/workbox/service-worker-lifecycle?hl=es-419
+        //1 registrar, 2 esperar activacion, 3 activado(ready)
+
+      if(navigator.serviceWorker !== undefined)
+      {
+        write ('service worker is supported','div','green sw')
+        let swpanel = document.querySelector('.sw');
+
+        navigator.serviceWorker
+        .register('./serviceWorker.js')
+        .then(reg => {
+            console.log('service worker registered', reg)
+            let psw = document.createElement('p');
+            psw.textContent = 'serviceWorker.js was registered as service worker';
+            swpanel.appendChild(psw);
+
+           
+        })
+        .catch(err => console.error('error service worker not registered', err))
+
+        navigator.serviceWorker.ready.then((res) => {
+          console.log('service worker is ready', res);
+          let psw0 = document.createElement('p');
+          psw0.textContent = 'serviceWorker.js is ready';
+          swpanel.appendChild(psw0);
+          let cont = 1;
+          const ping = setInterval(() => {
+            if (cont <= 3) {
+              console.log('pinging service worker');
+              let psw2 = document.createElement('p');
+              psw2.textContent = ' ping to service worker';
+              swpanel.appendChild(psw2);
+              res.active.postMessage('ping');
+              cont++;
+            } else {
+              clearInterval(ping);
+              console.log('ping stopped');
+              let psw3 = document.createElement('p');
+              psw3.textContent = ' ping stoped';
+              swpanel.appendChild(psw3);
+            }
+          }, 2000);
+        });
+
+        navigator.serviceWorker.addEventListener('message', (event) => {
+            console.log('main script got response from service worker', event.data);
+            let psw = document.createElement('p');
+            psw.textContent = 'pong from serviceWorker.js';
+            swpanel.appendChild(psw);
+        });
+
+
+
+      }
+      else{ write ('service worker not supported','div','yellow') }
 
 
 
@@ -1169,12 +1233,9 @@ try {
 
 
 
-
-
-
-    
-    //  Reto del Chat Realtime
     //  Cachear sitio web y mostrarlo offline
+    write('offline browsing support with servise Worker','h2')
+    write('check out serviceWorker.js for code example')
     //  Cookies
     //  Crear aviso de uso de cookies
     //  Objeto Screen
