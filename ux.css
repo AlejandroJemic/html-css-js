@@ -1,0 +1,35 @@
+body {
+    padding: 40px;
+   
+}
+h1{
+    text-align: left;
+    color: slateblue;
+    background-image: linear-gradient(to left, slateblue, white);
+    min-height: 50px;
+    padding: 1rem;
+    margin: 0px;
+    border-bottom: solid 2px slateblue;
+}
+h2{
+    text-align: left;
+    color: slateblue;
+    background-image: linear-gradient(to left, slateblue, white);
+    min-height: 50px;
+    padding: 1rem;
+    border-bottom: solid 2px slateblue;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+p{margin-left: 30px !important;}
+
+.uximg{
+    max-width: 80%;
+    display: inline-flex;
+    border: solid 3px #abb;
+    box-shadow: 5px 5px 5px rgb(60, 72, 74);
+    border-radius: 10px;
+    margin: 20px 0 20px 40px;
+    min-width: 300px;
+}

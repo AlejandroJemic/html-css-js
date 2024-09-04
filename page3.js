@@ -36,10 +36,10 @@ try {
     // alert()      muestra mensaje emergente
     alert('your name is ' + data);
     // print()      imprime la pagina
-    window.print();
+    // window.print();
     // confirm()    alrte con si no 
     let conf = window.confirm("do you want to print this page?");
-    if (conf) {
+    if (conf === true) {
         write("you printed the page", "div", "green");
         // print()      imprime la pagina
         window.print();
@@ -580,10 +580,10 @@ try {
     write('','br')
     write('','br')
     write('this is the end. Thanks you for watching my code','h4');
-
+    write('','br');write('','br')
     let a = document.createElement('A');
     a.href = '/page4.html';
-    a.textContent = 'or continue in page 4 to view the advance level of javascript code';
+    a.textContent = 'NEXT -> JS advance level';
     document.body.appendChild(a);
     window.scrollTo(0, document.body.scrollHeight);
     

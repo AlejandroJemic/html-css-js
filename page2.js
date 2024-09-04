@@ -608,10 +608,10 @@ write('header\'s closest DIV classname is "'+ header.closest('div').className + 
 
 
 write('this is the end. Thanks you for watching my code','h4');
-
+write('','br');write('','br');
 let a = document.createElement('A');
 a.href = '/page3.html';
-a.textContent = 'or continue in page 3';
+a.textContent = 'NEXT -> JS mid level';
 
 document.body.appendChild(a);
 
