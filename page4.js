@@ -941,7 +941,7 @@ try {
 
  
     //  Objeto Navigator **********************************************************************
-    write(' Objeto Navigato ','h2')
+    write(' Objeto Navigator ','h2')
     write('see examples and coments in soruce code')
     // interfaces de objetos navigator:
     // navigatorID
